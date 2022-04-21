@@ -17,6 +17,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: '$(System.DefaultWorkingDirectory)\.pipelines\scripts\Generate-Connections.ps1 -resourceGroup rg-wus-testinglogicapp-dev -outputLocation connections.json -withFunctions'
+      pwsh: true
 
   - task: CopyFiles@2
     displayName: 'Create project folder'
