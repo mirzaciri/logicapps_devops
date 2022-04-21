@@ -48,4 +48,4 @@ stages:
               scriptType: 'ps'
               scriptLocation: 'scriptPath'
               scriptPath: './Generate-Connections.ps1'
-              arguments: '-resourceGroup rg-api-connections -outputLocation connections.json -withFunctions'
+              arguments: '-resourceGroup rg-wus-testinglogicapp-dev -outputLocation connections.json -withFunctions'
