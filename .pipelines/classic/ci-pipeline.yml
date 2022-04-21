@@ -17,7 +17,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        cd $(System.DefaultWorkingDirectory)
+        cd $(System.DefaultWorkingDirectory)/.pipelines
         Get-ChildItem -Recurse –File
 
   - task: CopyFiles@2
