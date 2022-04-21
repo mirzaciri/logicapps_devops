@@ -2,7 +2,7 @@
 
 variables:
 
-  projectName: 'logicappsample'
+  projectName: 'testing-logic-app'
   suffix: 'dev'
 
   # Resource Group
