@@ -13,12 +13,13 @@ jobs:
 - job: logic_app_build
   displayName: 'Build and publish logic app'
   steps:
-  - task: PowerShell@2
+  - task: AzureCLI@2
     inputs:
-      targetType: 'inline'
-      script: |
-        cd $(System.DefaultWorkingDirectory)/.pipelines
-        Get-ChildItem -Recurse –File
+      azureSubscription: 'azure_mirza_2s'
+      scriptType: 'ps'
+      scriptLocation: 'scriptPath'
+      scriptPath: '$(System.DefaultWorkingDirectory)/.pipelines/scripts/Generate-Connections.ps1'
+      arguments: '-resourceGroup rg-wus-testinglogicapp-dev -outputLocation connections.json -withFunctions'
 
   - task: CopyFiles@2
     displayName: 'Create project folder'
