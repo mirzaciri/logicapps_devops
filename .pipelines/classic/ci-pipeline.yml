@@ -13,6 +13,14 @@ jobs:
 - job: logic_app_build
   displayName: 'Build and publish logic app'
   steps:
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'azure_mirza_2s'
+      scriptType: 'ps'
+      scriptLocation: 'scriptPath'
+      scriptPath: './Generate-Connections.ps1'
+      arguments: '-resourceGroup rg-wus-testinglogicapp-dev -outputLocation connections.json -withFunctions'
+
   - task: CopyFiles@2
     displayName: 'Create project folder'
     inputs:
