@@ -18,7 +18,7 @@ jobs:
       targetType: 'inline'
       script: |
         cd $(System.DefaultWorkingDirectory)
-        Get-ChildItem -Recurse
+        Get-ChildItem -Recurse –File
 
   - task: CopyFiles@2
     displayName: 'Create project folder'
