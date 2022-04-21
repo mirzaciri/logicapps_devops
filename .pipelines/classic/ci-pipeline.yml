@@ -17,9 +17,8 @@ jobs:
     inputs:
       azureSubscription: 'azure_mirza_2s'
       scriptType: 'ps'
-      scriptLocation: 'scriptPath'
-      scriptPath: './Generate-Connections.ps1'
-      arguments: '-resourceGroup rg-wus-testinglogicapp-dev -outputLocation connections.json -withFunctions'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'ls'
 
   - task: CopyFiles@2
     displayName: 'Create project folder'
