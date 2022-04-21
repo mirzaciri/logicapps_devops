@@ -19,7 +19,7 @@ jobs:
       azureSubscription: 'azure_mirza_2s'
       ScriptType: 'FilePath'
       ScriptPath: '$(System.DefaultWorkingDirectory)/.pipelines/scripts/Generate-Connections.ps1'
-      ScriptArguments: '-resourceGroup rg-wus-testinglogicapp-dev'
+      ScriptArguments: '-resourceGroup rg-wus-testinglogicapp-dev -outputLocation $(System.DefaultWorkingDirectory)/logic/connections.json'
       azurePowerShellVersion: 'LatestVersion' 
 
   - task: CopyFiles@2
