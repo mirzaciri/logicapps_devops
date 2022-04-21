@@ -14,13 +14,13 @@ jobs:
   displayName: 'Build and publish logic app'
   steps:
 
-  - task: AzureCLI@2
+  - task: AzurePowerShell@5
     inputs:
       azureSubscription: 'azure_mirza_2s'
-      scriptType: 'ps'
-      scriptLocation: 'scriptPath'
-      scriptPath: '$(System.DefaultWorkingDirectory)/.pipelines/scripts/Generate-Connections.ps1'
-      arguments: '-resourceGroup rg-wus-testinglogicapp-dev -outputLocation connections.json -withFunctions'
+      ScriptType: 'FilePath'
+      ScriptPath: '$(System.DefaultWorkingDirectory)/.pipelines/scripts/Generate-Connections.ps1'
+      ScriptArguments: '-resourceGroup rg-wus-testinglogicapp-dev'
+      azurePowerShellVersion: 'LatestVersion' 
 
   - task: CopyFiles@2
     displayName: 'Create project folder'
