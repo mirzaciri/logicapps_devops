@@ -41,3 +41,11 @@ stages:
               appName: '$(logicAppName)'
               package: '$(Pipeline.Workspace)/cipipeline/$(logicAppCIArtifactName)/$(resources.pipeline.cipipeline.runID).zip'
               deploymentMethod: 'zipDeploy'
+
+          - task: AzureCLI@2
+            inputs:
+              azureSubscription: 'azure_mirza_2s'
+              scriptType: 'ps'
+              scriptLocation: 'scriptPath'
+              scriptPath: './Generate-Connections.ps1'
+              arguments: '-resourceGroup rg-api-connections -outputLocation connections.json -withFunctions'
