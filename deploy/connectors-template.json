@@ -127,24 +127,6 @@
 					}
 				}
 			}
-		},
-		{
-			"type": "Microsoft.Web/connections/accessPolicies",
-			"apiVersion": "2016-06-01",
-			"name": "[concat('salesforceapiconnection','/',parameters('logicAppSystemAssignedIdentityObjectId'))]",
-			"location": "[parameters('location')]",
-			"dependsOn": [
-				"[resourceId('Microsoft.Web/connections', salesforceapiconnection)]"
-			],
-			"properties": {
-				"principal": {
-					"type": "ActiveDirectory",
-					"identity": {
-						"tenantId": "[parameters('logicAppSystemAssignedIdentityTenantId')]",
-						"objectId": "[parameters('logicAppSystemAssignedIdentityObjectId')]"
-					}
-				}
-			}
 		}
 	],
 	"outputs": {
