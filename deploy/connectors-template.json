@@ -130,7 +130,7 @@
 		{
 			"type": "Microsoft.Web/connections/accessPolicies",
 			"apiVersion": "2016-06-01",
-			"name": "salesforce,'/',parameters('logicAppSystemAssignedIdentityObjectId'))]",
+			"name": "[concat('salesforce','/',parameters('logicAppSystemAssignedIdentityObjectId'))]",
 			"location": "[parameters('location')]",
 			"dependsOn": [
 				"[resourceId('Microsoft.Web/connections', salesforce)]"
@@ -144,7 +144,7 @@
 					}
 				}
 			}
-		}
+		},
 	],
 	"outputs": {
 		"blobendpointurl": {
