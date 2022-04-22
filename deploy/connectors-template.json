@@ -96,16 +96,17 @@
 		{
 			"type": "Microsoft.Web/connections",
 			"apiVersion": "2016-06-01",
-			"name": "salesforce",
-			"location": "[parameters('location')]",
+			"name": "salesforceapiconnection",
+			"location": "[resourceGroup().location]",
 			"properties": {
-				"displayName": "Connection to Salesforce",
-				"ParameterValues": {
-					"token:LoginUri": "test.salesforce.com",
-					"salesforceApiVersion": "v47"
+				"displayName": "Salesforce API Connection",
+				"parameterValues": {
+					"token:LoginUri": "https://test.salesforce.com",
+					"salesforceApiVersion": "v47",
+					"privacySetting": "Organizational"
 				},
 				"api": {
-					"id": "[concat('/subscriptions/', subscription().subscriptionId, '/providers/Microsoft.Web/locations/', parameters('location'), '/managedApis/salesforce')]"
+					"id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', 'centralus', '/managedApis/', 'salesforce')]"
 				}
 			}
 		},
@@ -130,10 +131,10 @@
 		{
 			"type": "Microsoft.Web/connections/accessPolicies",
 			"apiVersion": "2016-06-01",
-			"name": "[concat('salesforce','/',parameters('logicAppSystemAssignedIdentityObjectId'))]",
+			"name": "[concat('salesforceapiconnection','/',parameters('logicAppSystemAssignedIdentityObjectId'))]",
 			"location": "[parameters('location')]",
 			"dependsOn": [
-				"[resourceId('Microsoft.Web/connections', salesforce)]"
+				"[resourceId('Microsoft.Web/connections', salesforceapiconnection)]"
 			],
 			"properties": {
 				"principal": {
@@ -144,7 +145,7 @@
 					}
 				}
 			}
-		},
+		}
 	],
 	"outputs": {
 		"blobendpointurl": {
