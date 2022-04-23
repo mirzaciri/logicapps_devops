@@ -97,7 +97,7 @@
 			"type": "Microsoft.Web/connections",
 			"apiVersion": "2016-06-01",
 			"name": "salesforceapiconnection",
-			"location": "[resourceGroup().location]",
+			"location": "parameters('location')",
 			"properties": {
 				"displayName": "Salesforce API Connection",
 				"parameterValues": {
@@ -106,7 +106,7 @@
 					"privacySetting": "Organizational"
 				},
 				"api": {
-					"id": "[concat(subscription().id, '/providers/Microsoft.Web/locations/', 'centralus', '/managedApis/', 'salesforce')]"
+					"id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('location'),'/managedApis/salesforce')]"
 				}
 			}
 		},
