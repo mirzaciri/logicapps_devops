@@ -97,7 +97,7 @@
 			"type": "Microsoft.Web/connections",
 			"apiVersion": "2016-06-01",
 			"name": "salesforceapiconnection",
-			"location": "parameters('location')",
+			"location": "[parameters('location')]",
 			"properties": {
 				"displayName": "Salesforce API Connection",
 				"parameterValues": {
