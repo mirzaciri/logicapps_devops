@@ -21,6 +21,13 @@
 		"connections_azureblob_name": {
 			"defaultValue": "azureblob",
 			"type": "string"
+		},
+		"sf_url": {
+			"defaultValue": "https://login.salesforce.com",
+			"type": "string"
+		},
+		"sf_name": {
+			"type": "string"
 		}
 	},
 	"variables": {
@@ -96,15 +103,14 @@
 		{
 			"type": "Microsoft.Web/connections",
 			"apiVersion": "2016-06-01",
-			"name": "salesforceapiconnection",
+			"name": "[parameters('sf_name')]",
 			"kind": "V2",
 			"location": "[parameters('location')]",
 			"properties": {
 				"displayName": "Salesforce API Connection",
 				"parameterValues": {
-					"token:LoginUri": "https://test.salesforce.com",
-					"salesforceApiVersion": "v47",
-					"privacySetting": "Organizational"
+					"token:LoginUri": "[parameters('sf_url')]",
+					"salesforceApiVersion": "v47"
 				},
 				"api": {
 					"id": "[concat('/subscriptions/',subscription().subscriptionId,'/providers/Microsoft.Web/locations/',parameters('location'),'/managedApis/salesforce')]"
@@ -132,10 +138,10 @@
 		{
 			"type": "Microsoft.Web/connections/accessPolicies",
 			"apiVersion": "2016-06-01",
-			"name": "[concat('salesforceapiconnection','/',parameters('logicAppSystemAssignedIdentityObjectId'))]",
+			"name": "[concat(parameters('sf_name'),'/',parameters('logicAppSystemAssignedIdentityObjectId'))]",
 			"location": "[parameters('location')]",
 			"dependsOn": [
-				"[resourceId('Microsoft.Web/connections', 'salesforceapiconnection')]"
+				"[resourceId('Microsoft.Web/connections', parameters('sf_name'))]"
 			],
 			"properties": {
 				"principal": {

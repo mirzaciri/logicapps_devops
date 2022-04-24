@@ -58,6 +58,8 @@ jobs:
             overrideParameters: '
               -location $(resourceGroupLocation)
               -connections_azureblob_name $(blobConnectionName)
+              -sf_url $(sf_url)
+              -sf_name $(sf_name)
               -logicAppSystemAssignedIdentityTenantId $(logicAppSystemAssignedIdentityTenantId)
               -logicAppSystemAssignedIdentityObjectId $(logicAppSystemAssignedIdentityObjectId)'
             deploymentMode: $(deploymentMode)

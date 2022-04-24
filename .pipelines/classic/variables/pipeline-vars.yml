@@ -18,6 +18,10 @@ variables:
 
   # API Connections - if you change this name, you must change the reference in workflow.json
   blobConnectionName: 'azureblob'
+  
+  #salesforce:
+  sf_url: 'https://login.salesforce.com'
+  sf_name: 'salesforceconnector'
 
   # Project artifacts
   logicAppCIArtifactName: 'logicapp_publish_artifact'
