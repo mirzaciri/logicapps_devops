@@ -9,36 +9,44 @@
                     "statusCode": 200
                 },
                 "runAfter": {
-                    "Create_blob_(V2)": [
+                    "Create_record": [
                         "Succeeded"
                     ]
                 }
             },
-            "Create_blob_(V2)": {
+            "Checks_if_Blob_exists_in_Azure_Storage": {
+                "type": "ServiceProvider",
+                "inputs": {
+                    "parameters": {
+                        "containerName": "test",
+                        "blobName": "test"
+                    },
+                    "serviceProviderConfiguration": {
+                        "connectionName": "AzureBlob",
+                        "operationId": "blobExists",
+                        "serviceProviderId": "/serviceProviders/AzureBlob"
+                    }
+                },
+                "runAfter": {}
+            },
+            "Create_record": {
                 "type": "ApiConnection",
                 "inputs": {
                     "host": {
                         "connection": {
-                            "referenceName": "azureblob"
+                            "referenceName": "salesforce"
                         }
                     },
                     "method": "post",
-                    "body": "@triggerBody()",
-                    "headers": {
-                        "ReadFileMetadataFromServer": true
+                    "body": {
+                        "Name": "testing @{utcNow()}"
                     },
-                    "path": "/v2/datasets/@{encodeURIComponent(encodeURIComponent('sacb34ucffd7en6'))}/files",
-                    "queries": {
-                        "folderPath": "/blobs",
-                        "name": "@{utcNow()}",
-                        "queryParametersSingleEncoded": true
-                    }
+                    "path": "/v2/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('Account'))}/items"
                 },
-                "runAfter": {},
-                "runtimeConfiguration": {
-                    "contentTransfer": {
-                        "transferMode": "Chunked"
-                    }
+                "runAfter": {
+                    "Checks_if_Blob_exists_in_Azure_Storage": [
+                        "Succeeded"
+                    ]
                 }
             }
         },

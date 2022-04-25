@@ -1,11 +1,26 @@
 {
-    "blob_auth": {
-        "type":"object", 
-        "value": {
-            "type": "Raw",
-            "scheme": "Key",
-            "parameter": "@appsetting('azureblob-connectionKey')"
-        }
+  "WORKFLOWS_RESOURCE_GROUP_NAME": {
+    "type": "String",
+    "value": "rg-wus-testinglogicapp-dev"
+  },
+  "WORKFLOWS_SUBSCRIPTION_ID": {
+    "type": "String",
+    "value": "5db4528a-3018-4a63-a4c2-f442945a74a2"
+  },
+  "blob_auth": {
+    "type": "object",
+    "value": {
+      "type": "Raw",
+      "scheme": "Key",
+      "parameter": "@appsetting('azureblob-connectionKey')"
     }
-
+  },
+  "sf_auth": {
+    "type": "object",
+    "value": {
+      "type": "Raw",
+      "scheme": "Key",
+      "parameter": "@appsetting('salesforce-connectionKey')"
+    }
+  }
 }

@@ -1,15 +1,32 @@
 {
-    "managedApiConnections": {
-      "azureblob": {
-        "api": {
-          "id": "/subscriptions/@appsetting('WORKFLOWS_SUBSCRIPTION_ID')/providers/Microsoft.Web/locations/@appsetting('WORKFLOWS_LOCATION_NAME')/managedApis/azureblob"
-        },
-        "connection": {
-          "id": "/subscriptions/@appsetting('WORKFLOWS_SUBSCRIPTION_ID')/resourceGroups/@appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')/providers/Microsoft.Web/connections/azureblob"
-        },
-        "connectionRuntimeUrl": "@appsetting('BLOB_CONNECTION_RUNTIMEURL')",
-        "authentication": "@parameters('blob_auth')"
+  "managedApiConnections": {
+    "salesforce": {
+      "api": {
+        "id": "/subscriptions/@appsetting('WORKFLOWS_SUBSCRIPTION_ID')/providers/Microsoft.Web/locations/westeurope/managedApis/salesforce"
+      },
+      "connection": {
+        "id": "/subscriptions/@appsetting('WORKFLOWS_SUBSCRIPTION_ID')/resourceGroups/@appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')/providers/Microsoft.Web/connections/salesforceconnector"
+      },
+      "connectionRuntimeUrl": "@appsetting('SF_RUNTIME_URL')",
+      "authentication": {
+        "type": "object",
+        "value": {
+          "type": "Raw",
+          "scheme": "Key",
+          "parameter": "@appsetting('salesforce-connectionKey')"
+        }
       }
     }
+  },
+  "serviceProviderConnections": {
+    "AzureBlob": {
+      "parameterValues": {
+        "connectionString": "@appsetting('AzureBlob_connectionString')"
+      },
+      "serviceProvider": {
+        "id": "/serviceProviders/AzureBlob"
+      },
+      "displayName": "testing"
+    }
   }
-  
+}
